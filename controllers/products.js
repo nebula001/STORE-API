@@ -5,5 +5,9 @@ const getProductStatic = async (req, res) => {
   res.status(200).json(products);
 };
 
-const getProducts = async (req, res) => {};
+const getProducts = async (req, res) => {
+  console.log(req.query);
+  const products = await Product.find(req.query);
+  res.status(200).json({ products, nbHits: products.length });
+};
 module.exports = { getProducts, getProductStatic };
